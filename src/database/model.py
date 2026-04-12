@@ -14,8 +14,18 @@ class UsersOrm(Base):
     user_id: Mapped[int] = mapped_column(BigInteger, nullable=False, unique=True)
     username: Mapped[str | None]
     name: Mapped[str]
+    registration_date: Mapped[datetime.datetime] = mapped_column(server_default=text("TIMEZONE('utc', now())"))
 
+    active_connection: Mapped["ActiveUserOrm"] = relationship(back_populates="user")
+
+class ActiveUserOrm(Base):
+    __tablename__ = "active_users"
+
+    id: Mapped[intpk]
+    user_id: Mapped[int | None] = mapped_column(ForeignKey("users.user_id"))
     port_id: Mapped[int | None] = mapped_column(ForeignKey("ports.id"))
+
+    user: Mapped["UsersOrm"] = relationship(back_populates="active_connection")
     port: Mapped["PortsOrm"] = relationship(back_populates="users")
 
 class PortsOrm(Base):
@@ -26,7 +36,7 @@ class PortsOrm(Base):
     secret: Mapped[str]
     sponsor: Mapped[str | None]
 
-    users: Mapped[list["UsersOrm"]] = relationship(back_populates="port")
+    users: Mapped[list["ActiveUserOrm"]] = relationship(back_populates="port")
 
     host_id: Mapped[int] = mapped_column(ForeignKey("hosts.id"))
     host: Mapped["HostsOrm"] = relationship(back_populates="ports")
