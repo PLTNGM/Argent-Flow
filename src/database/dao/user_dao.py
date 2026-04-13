@@ -1,7 +1,7 @@
 from sqlalchemy import insert, select
 from sqlalchemy.dialects.postgresql import insert
-from src.database.database import sync_session_factory, Base, async_session_factory
-from src.database.model import UsersOrm, ActiveUserOrm, HostsOrm, PortsOrm, SponsorSubOrm
+from src.database.database import async_session_factory
+from src.database.model import UsersOrm
 
 class UserDao:
 
