@@ -5,4 +5,10 @@ class BotTexts:
             f"Тут будет привет {name}"
         )
     
+    @staticmethod
+    def subs_notif_message():
+        return (
+            f"Прежде чем получить доступ к прокси, подпишитесь на наших спонсоров"
+        )
+    
     
