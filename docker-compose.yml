@@ -14,7 +14,7 @@ services:
   ArgentFlowBot:
     build: .
     image: argent-flow-bot
-    command: sh -c "alembic upgrade head && python -m src.main"
+    command: sh -c "export PYTHONPATH=$PYTHONPATH:/app && alembic upgrade head && python -m src.main"
     restart: always
     environment:
       - DB_HOST=ArgentFlowDb
