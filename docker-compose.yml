@@ -23,3 +23,6 @@ services:
       - BOT_TOKEN=${BOT_TOKEN}
     depends_on:
       - ArgentFlowDb
+
+volumes:
+  pg_data:
