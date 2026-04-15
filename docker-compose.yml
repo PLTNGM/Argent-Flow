@@ -1,0 +1,25 @@
+services:
+  ArgentFlowDb:
+    image: postgres:18-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  ArgentFlowBot:
+    build: .
+    restart: always
+    environment:
+      - DB_HOST=ArgentFlowDb
+      - DB_PORT=5432
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - BOT_TOKEN=${BOT_TOKEN}
+    depends_on:
+      - ArgentFlowDb
