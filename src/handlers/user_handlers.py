@@ -12,7 +12,7 @@ async def cmd_start(message: Message):
     await UserDao.register_user(
         user_id=message.from_user.id,
         username=message.from_user.username,
-        first_name=message.from_user.first_name
+        name=message.from_user.first_name
     )
     await message.answer(
         text=BotTexts.start_message(message.from_user.first_name),
