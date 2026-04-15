@@ -13,6 +13,7 @@ services:
 
   ArgentFlowBot:
     build: .
+    image: argent-flow-bot
     restart: always
     environment:
       - DB_HOST=ArgentFlowDb
