@@ -26,7 +26,7 @@ async def callback_get_access(callback: CallbackQuery):
 
 
 
-    await callback.answer(
+    await callback.message.edit_text(
         text=BotTexts.subs_notif_message(),
         reply_markup = UserKeyboards.sponsor_buttons()
     )
