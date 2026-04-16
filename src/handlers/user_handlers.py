@@ -24,11 +24,11 @@ async def cmd_start(message: Message):
 async def callback_get_access(callback: CallbackQuery):
     await callback.answer()
 
-
+    sponsors = await SponsorDaoOrm.select_all_sponsor()
 
     await callback.message.edit_text(
         text=BotTexts.subs_notif_message(),
-        reply_markup = UserKeyboards.sponsor_buttons()
+        reply_markup = UserKeyboards.sponsor_buttons(sponsors = sponsors)
     )
 
 @router.callback_query(F.data == "check_subs")
