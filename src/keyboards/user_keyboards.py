@@ -8,7 +8,7 @@ class UserKeyboards:
         btn_conn = InlineKeyboardButton(text="Получить доступ🚀", callback_data="get_access")
         
         keyboard = InlineKeyboardMarkup(
-            keyboard=[
+            inline_keyboard=[
                 [btn_conn]
             ]
         )
